@@ -11,8 +11,7 @@ namespace Controllers
         public override void Activate()
         {
             ConfigManager.Gold -= Price;
-            ConfigManager.FrequencySpawn =
-                ConfigManager.FrequencySpawn = 5;
+            ConfigManager.FrequencySpawn = 5;
         }
     }
 }

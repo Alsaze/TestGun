@@ -66,7 +66,7 @@ namespace Controllers
             StartCoroutine(SpawnObjectWithRandomFrequency());
         }
         
-        private IEnumerator SpawnObjectWithRandomFrequency()// частота спавна врагов
+        private IEnumerator SpawnObjectWithRandomFrequency()// повышение сложности игры в зависимости от времени
         {
             double _gameSpeedFactor = 0.05f; // сложность игры 
             double _minSpawnFrequency = 1f;
@@ -75,13 +75,15 @@ namespace Controllers
                 float _randomNumber = Random.Range(0.01f, 0.03f);
                 SpawnEnemy();
                 yield return new WaitForSeconds(ConfigManager.FrequencySpawn);
-                if (ConfigManager.FrequencySpawn >= _minSpawnFrequency) 
+                
+                if (ConfigManager.FrequencySpawn >= _minSpawnFrequency)
                 {
-                    ConfigManager.FrequencySpawn -= (float) _gameSpeedFactor + _randomNumber;
+                    ConfigManager.FrequencySpawn -= (float)_gameSpeedFactor + _randomNumber;
                     ConfigManager.Hp += (float)_gameSpeedFactor;
                     ConfigManager.MoveSpeedEnemie += (float)_gameSpeedFactor;
-                    
-                    Debug.Log($"{ConfigManager.FrequencySpawn}|||||{ConfigManager.Hp}||||{ConfigManager.MoveSpeedEnemie}");
+
+                    Debug.Log(
+                        $"FrequencySpawn {ConfigManager.FrequencySpawn}|||||HP {ConfigManager.Hp}||||MoveSpeed {ConfigManager.MoveSpeedEnemie}");
                 }
             }
         }
