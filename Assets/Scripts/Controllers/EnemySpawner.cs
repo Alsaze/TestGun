@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 namespace Controllers
 {
     public class EnemySpawner : MonoBehaviour
     {
-        //частоат спавна
-        
+        //spawn position
         [SerializeField] private GameObject minPosition;
         [SerializeField] private GameObject maxPosition;
         //EnemyPrefabs
@@ -56,14 +56,34 @@ namespace Controllers
             return newPosition;
         }
 
-        private void CreateEnemy()
+        private void SpawnEnemy()
         {
             ConfigManager.Enemy.Add(Instantiate(GetEnemyPrefabs(), GetIsometricPosition(), Quaternion.identity, _enemySpawnwer));
         }
 
         void Start()
         {
-            InvokeRepeating("CreateEnemy", 0f,ConfigManager.FrequencySpawn );
+            StartCoroutine(SpawnObjectWithRandomFrequency());
+        }
+        
+        private IEnumerator SpawnObjectWithRandomFrequency()// частота спавна врагов
+        {
+            double _gameSpeedFactor = 0.05f; // сложность игры 
+            double _minSpawnFrequency = 1f;
+            while (true)
+            {
+                float _randomNumber = Random.Range(0.01f, 0.03f);
+                SpawnEnemy();
+                yield return new WaitForSeconds(ConfigManager.FrequencySpawn);
+                if (ConfigManager.FrequencySpawn >= _minSpawnFrequency) 
+                {
+                    ConfigManager.FrequencySpawn -= (float) _gameSpeedFactor + _randomNumber;
+                    ConfigManager.Hp += (float)_gameSpeedFactor;
+                    ConfigManager.MoveSpeedEnemie += (float)_gameSpeedFactor;
+                    
+                    Debug.Log($"{ConfigManager.FrequencySpawn}|||||{ConfigManager.Hp}||||{ConfigManager.MoveSpeedEnemie}");
+                }
+            }
         }
     }
 }

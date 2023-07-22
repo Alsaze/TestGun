@@ -6,7 +6,7 @@ namespace Controllers
     public abstract class Character : MonoBehaviour
     {
         //в дальнейшем у персонажа может быть HP и условия победы изменятся 
-        public float HP  { get; set; }
+        public float HpCharacter  { get; set; }
         public float MoveSpeed { get; set; }
 
         protected Animator _animator;
@@ -16,7 +16,7 @@ namespace Controllers
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            HP = ConfigManager.Hp;
+            HpCharacter = ConfigManager.Hp;
         }
 
         private void Animator()

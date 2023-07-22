@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
-public class ConfigManager : MonoBehaviour
+public static class ConfigManager
 {
-    public static ConfigManager instance;
-    public static float FireDamage;
-    public static float FireSpeed;
-    public static float Hp;
-    public static float FrequencySpawn;
-    public static List<GameObject> Enemy;
-    public static int Gold;
-    public static int Time;
-    public static int Score;
-    public static float ElapsedTime;
+    public static float FireDamage = 1;
+    public static float FireSpeed = 1;
+    public static float Hp = 1;
+    public static float MoveSpeedEnemie = 1;
+    public static float FrequencySpawn = 5;
+    public static ObservableCollection<GameObject> Enemy = new ObservableCollection<GameObject>();
+    public static int Gold = 0; 
+    public static int Time = 0;
+    public static int Score = 0;
+    public static float ElapsedTime = 0;
 }
