@@ -1,88 +1,49 @@
 ﻿using System;
+using Controllers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Controllers
+public class BoostersController : MonoBehaviour
 {
-    public class BoostersController : MonoBehaviour
+    [SerializeField] private Text _priceBoosterUpgradeWeaponText;
+    [SerializeField] private Text _priceBoosterKillAllEnemysText;
+    [SerializeField] private Text _priceBoosterFreezeSpawnEnemiesText;
+
+    private Booster _upgradeWeaponBooster;
+    private Booster _killAllEnemiesBooster;
+    private Booster _freezeSpawnEnemiesBooster;
+
+    private void Start()
     {
-        private int _priceBoosterUpgradeWeapon = 1;
-        [SerializeField] private Text _priceBoosterUpgradeWeaponText;
+        _upgradeWeaponBooster = new UpgradeWeaponBooster(1);
+        _killAllEnemiesBooster = new KillAllEnemiesBooster(2);
+        _freezeSpawnEnemiesBooster = new FreezeSpawnEnemiesBooster(3);
+    }
 
-        private int _priceBoosterKillAllEnemys = 2;
-        [SerializeField] private Text _priceBoosterKillAllEnemysText;
+    private void Update()
+    {
+        SetUI();
 
-        private int _priceBoosterFreezeSpawnEnemies = 3;
-        [SerializeField] private Text _priceBoosterFreezeSpawnEnemiesText;
-
-        private void SetUI()
+        if (Input.GetKeyDown(KeyCode.G) && ConfigManager.Gold >= _upgradeWeaponBooster.Price)
         {
-            _priceBoosterUpgradeWeaponText.text = _priceBoosterUpgradeWeapon.ToString();
-            _priceBoosterKillAllEnemysText.text = _priceBoosterKillAllEnemys.ToString();
-            _priceBoosterFreezeSpawnEnemiesText.text = _priceBoosterFreezeSpawnEnemies.ToString();
+            _upgradeWeaponBooster.Activate();
         }
 
-        private void Update()
+        if (Input.GetKeyDown(KeyCode.R) && ConfigManager.Gold >= _freezeSpawnEnemiesBooster.Price)
         {
-            SetUI();
-
-            //прокачка оружия
-            if (Input.GetKeyDown(KeyCode.G) && ConfigManager.Gold >= _priceBoosterUpgradeWeapon)
-            {
-                BoosterUpgradeWeapon();
-            }
-
-            //замарозка спавна на 3 секунды
-            if (Input.GetKeyDown(KeyCode.R) && ConfigManager.Gold >= _priceBoosterFreezeSpawnEnemies)
-            {
-                BoosterFreezeSpawnEnemies();
-            }
-
-            //убийство всех врагов на сцене
-            if (Input.GetKeyDown(KeyCode.T) && ConfigManager.Gold >= _priceBoosterKillAllEnemys)
-            {
-                BoosterKillAllEnemys();
-            }
+            _freezeSpawnEnemiesBooster.Activate();
         }
 
-        private void Start()
+        if (Input.GetKeyDown(KeyCode.T) && ConfigManager.Gold >= _killAllEnemiesBooster.Price)
         {
-            ConfigManager.FrequencySpawn = 3;
+            _killAllEnemiesBooster.Activate();
         }
+    }
 
-        #region Boosters
-
-        private void BoosterUpgradeWeapon()
-        {
-            ConfigManager.Gold -= _priceBoosterUpgradeWeapon;
-
-            ConfigManager.FireDamage += 1;
-            ConfigManager.FireSpeed -= 0.1f;
-        }
-
-        private void BoosterKillAllEnemys()
-        {
-            ConfigManager.Gold -= _priceBoosterKillAllEnemys;
-            for (int i = 0; i < ConfigManager.Enemy.Count; i++)
-            {
-                Destroy(ConfigManager.Enemy[i]);
-
-                ConfigManager.Score += 100;
-                ConfigManager.Gold += 1;
-            }
-
-            ConfigManager.Enemy.Clear();
-        }
-
-        private void BoosterFreezeSpawnEnemies() //не работает !!!!
-        {
-            ConfigManager.Gold -= _priceBoosterFreezeSpawnEnemies;
-
-            ConfigManager.FrequencySpawn = 5;
-
-            Debug.Log(ConfigManager.FrequencySpawn);
-        }
-
-        #endregion
+    private void SetUI()
+    {
+        _priceBoosterUpgradeWeaponText.text = _upgradeWeaponBooster.Price.ToString();
+        _priceBoosterKillAllEnemysText.text = _killAllEnemiesBooster.Price.ToString();
+        _priceBoosterFreezeSpawnEnemiesText.text = _freezeSpawnEnemiesBooster.Price.ToString();
     }
 }
