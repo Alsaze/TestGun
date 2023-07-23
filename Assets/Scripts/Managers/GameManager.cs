@@ -22,6 +22,16 @@ public class GameManager : MonoBehaviour
 
     private void Lose()
     { 
+        if (ConfigManager.ElapsedTime > ConfigManager.BestElapsedTimeTime)
+        {
+            ConfigManager.BestElapsedTimeTime = ConfigManager.ElapsedTime;
+        }
+
+        if (ConfigManager.Score > ConfigManager.BestScore)
+        {
+            ConfigManager.BestScore = ConfigManager.Score;
+        }
+        
         ConfigManager.FireDamage = 1;
         ConfigManager.FireSpeed = 1;
         ConfigManager.Hp = 1;

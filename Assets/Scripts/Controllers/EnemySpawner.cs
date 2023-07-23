@@ -58,7 +58,21 @@ namespace Controllers
 
         private void SpawnEnemy()
         {
-            ConfigManager.Enemy.Add(Instantiate(GetEnemyPrefabs(), GetIsometricPosition(), Quaternion.identity, _enemySpawnwer));
+            if (ConfigManager.CanSpawn)
+            {
+                ConfigManager.Enemy.Add(Instantiate(GetEnemyPrefabs(), GetIsometricPosition(), Quaternion.identity, _enemySpawnwer));
+            }
+            else
+            {
+                StartCoroutine("FreezeSpawn");
+            }
+        }
+
+        private IEnumerator FreezeSpawn()
+        {
+            float freezeSpawn = 3;
+            yield return new WaitForSeconds(freezeSpawn+ConfigManager.FrequencySpawn);
+            ConfigManager.CanSpawn = true;
         }
 
         void Start()
