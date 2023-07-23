@@ -15,9 +15,9 @@ public class BoostersController : MonoBehaviour
 
     private void Start()
     {
-        _upgradeWeaponBooster = new UpgradeWeaponBooster(1);
-        _killAllEnemiesBooster = new KillAllEnemiesBooster(2);
-        _freezeSpawnEnemiesBooster = new FreezeSpawnEnemiesBooster(3);
+        _upgradeWeaponBooster = new UpgradeWeaponBooster(10);
+        _killAllEnemiesBooster = new KillAllEnemiesBooster(15);
+        _freezeSpawnEnemiesBooster = new FreezeSpawnEnemiesBooster(15);
     }
 
     private void Update()

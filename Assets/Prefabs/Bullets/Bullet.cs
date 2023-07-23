@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        float speed = 5f;
+        float speed = 100f;
         transform.position += _shotDirection * Time.deltaTime * speed;
     }
 }

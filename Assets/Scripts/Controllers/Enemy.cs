@@ -8,11 +8,9 @@ using UnityEngine.Serialization;
 
 public class Enemy : Character
 {
-    //кастыльное решение с рандомизацией позиции врага из за нехватки времени !!!
     private Vector3Int newPosition = new Vector3Int(0, 0, 0);
 
     [SerializeField] private EnemySpawner _enemySpawner;
-    // [SerializeField] private GameObject enemySpawner;
 
     private void Start()
     {

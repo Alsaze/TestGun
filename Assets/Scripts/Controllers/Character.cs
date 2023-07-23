@@ -5,7 +5,6 @@ namespace Controllers
 {
     public abstract class Character : MonoBehaviour
     {
-        //в дальнейшем у персонажа может быть HP и условия победы изменятся 
         public float HpCharacter  { get; set; }
         public float MoveSpeed { get; set; }
 
