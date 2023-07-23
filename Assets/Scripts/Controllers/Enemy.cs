@@ -4,21 +4,21 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class Enemy : Character
 {
     //кастыльное решение с рандомизацией позиции врага из за нехватки времени !!!
     private Vector3Int newPosition = new Vector3Int(0, 0, 0);
 
-    private EnemySpawner _enemySpawner = new EnemySpawner();
-    [SerializeField] private GameObject enemySpanwer;
+    [SerializeField] private EnemySpawner _enemySpawner;
+    // [SerializeField] private GameObject enemySpawner;
 
     private void Start()
     {
-        _enemySpawner = enemySpanwer.GetComponent<EnemySpawner>();
-
         MoveSpeed = ConfigManager.MoveSpeedEnemie;
         newPosition = _enemySpawner.GetIsometricPosition();
+        transform.LookAt(newPosition,transform.up);
     }
 
     private void FixedUpdate()
@@ -54,12 +54,12 @@ public class Enemy : Character
         transform.position = Vector3.MoveTowards(transform.position, newPosition,
             MoveSpeed * Time.deltaTime);
 
-        //каждый раз когда мы достигаем поставленной точки, она меняеться другой
-        if (transform.position == newPosition)
+        if (Vector3.Distance(transform.position,newPosition)<=0.1f)
         {
-            _enemySpawner.GetIsometricPosition();
+            newPosition = _enemySpawner.GetIsometricPosition();
+            transform.LookAt(newPosition,transform.up);
         }
-        
+
         //Character.cs => Animator
         _isWalking = transform.position != newPosition ? _isWalking = true : _isWalking = false;
         IsWalking(_isWalking);

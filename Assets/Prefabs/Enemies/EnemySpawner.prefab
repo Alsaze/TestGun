@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0627f0f9ec43449a513b978d4427e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPosition: {fileID: 3484317142077581266, guid: e0f7be9007f3d0e42b559707b4ceb222, type: 3}
-  maxPosition: {fileID: 8036218724598133199, guid: 449467b57fef1594d878afbc917f9f31, type: 3}
+  _minPosition: {fileID: 3484317142077581266, guid: e0f7be9007f3d0e42b559707b4ceb222, type: 3}
+  _maxPosition: {fileID: 8036218724598133199, guid: 449467b57fef1594d878afbc917f9f31, type: 3}
   _zombiePrefab: {fileID: 4807378906527954953, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}
   _mob1Prefab: {fileID: 4807378906527954953, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}
   _mob2Prefab: {fileID: 4807378906527954953, guid: 8c78a47f60bcba3449258f2f1232e9a5, type: 3}

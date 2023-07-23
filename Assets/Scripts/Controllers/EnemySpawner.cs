@@ -10,8 +10,8 @@ namespace Controllers
     public class EnemySpawner : MonoBehaviour
     {
         //spawn position
-        [SerializeField] private GameObject minPosition;
-        [SerializeField] private GameObject maxPosition;
+        [SerializeField] private GameObject _minPosition;
+        [SerializeField] private GameObject _maxPosition;
         //EnemyPrefabs
         [SerializeField] private GameObject _zombiePrefab;
 
@@ -25,32 +25,27 @@ namespace Controllers
             Transform _enemySpawnwer = GetComponent<Transform>();
         }
 
-        private GameObject GetEnemyPrefabs()
+        private GameObject GetEnemyPrefabs()//можно много мобов вставить, но я не успел 
         {
-            int randomNumber = Random.Range(0, 2);
-            if (randomNumber == 0)
+            int randomNumber = Random.Range(0, 3);
+            switch (randomNumber)
             {
-                return _zombiePrefab;
+                case 0:
+                    return _zombiePrefab;
+                case 1:
+                    return _mob1Prefab;
+                case 2:
+                    return _mob2Prefab;
+                default:
+                    return _zombiePrefab;
             }
-
-            if (randomNumber == 1)
-            {
-                return _mob1Prefab;
-            }
-
-            if (randomNumber == 2)
-            {
-                return _mob2Prefab;
-            }
-
-            return _zombiePrefab;
         }
 
         public Vector3Int GetIsometricPosition()
         {
-            int randomX = (int)Random.Range(minPosition.transform.position.x, maxPosition.transform.position.x);
-            int randomZ = (int)Random.Range(minPosition.transform.position.z, maxPosition.transform.position.z);
-            int posY = 2;
+            int randomX = (int)Random.Range(_minPosition.transform.position.x, _maxPosition.transform.position.x);
+            int randomZ = (int)Random.Range(_minPosition.transform.position.z, _maxPosition.transform.position.z);
+            int posY = 1;
             Vector3Int newPosition = new Vector3Int(randomX, posY, randomZ);
 
             return newPosition;

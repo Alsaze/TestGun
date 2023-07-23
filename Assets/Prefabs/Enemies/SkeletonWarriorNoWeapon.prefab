@@ -1768,10 +1768,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5331396684007973555}
-  - component: {fileID: 2241879869581457609}
   - component: {fileID: 4371813001767966892}
   - component: {fileID: 7316159570748958857}
   - component: {fileID: -6573224237349362210}
+  - component: {fileID: -4515761123686580586}
   m_Layer: 0
   m_Name: SkeletonWarriorNoWeapon
   m_TagString: Untagged
@@ -1795,25 +1795,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2241879869581457609
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4807378906527954953}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8bbf8b7b8b5f1144ba263c0e541f0452, type: 3}
-  m_Controller: {fileID: 9100000, guid: 46eab88721893fa4d9e211fce252b307, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4371813001767966892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,7 +1807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c280f2568f8a64a4082815a97583ec6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpanwer: {fileID: 4633398456234394434, guid: 817c61ea78c241e48912fa2907b8f2ae, type: 3}
+  _enemySpawner: {fileID: 4633398456234394433, guid: 817c61ea78c241e48912fa2907b8f2ae, type: 3}
 --- !u!65 &7316159570748958857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1854,8 +1835,27 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!95 &-4515761123686580586
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4807378906527954953}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4827379098699448512
 GameObject:
   m_ObjectHideFlags: 0
